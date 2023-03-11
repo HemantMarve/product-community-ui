@@ -1,0 +1,42 @@
+    
+    
+    <div class="container-fluid h-100" id="intro" >
+      
+        <div class="row">
+          <app-navbar [userLoggedIn]=userLoggedIn style="padding: 0%;"></app-navbar>
+        </div>
+        <div class="row d-inline p-2 text-white" style="text-align: center;">
+          <div class="col" >
+         <h1 style="color: white;"> <i>Welcome To Product Community</i></h1>
+        
+        </div>
+        </div>
+
+        <div class="row">
+        <div class="d-flex col justify-content-center h-100">
+          <div class="searchbar" *ngIf="userLoggedIn">
+            <input class="search_input" [(ngModel)]="searchInput" type="text" name="" placeholder="yyyy-mm-dd,prodcuctOr content" >
+            <a  class="search_icon"><i class="fas fa-search" (click)="searchQuestions()"></i></a>
+          </div>
+        </div>
+        </div><br>
+        <!--<div class="row " *ngIf="!userLoggedIn">
+            <div class="col " style="text-align: center;" >
+                <h5 style="color: white;">Search questions asked on different Products by Date(yyyy-mm-dd), prodcuct Type Or content</h5>
+
+            </div>
+            
+        </div>-->
+
+        <div class="row d-inline p-2 text-white" style="text-align: center; font-size: 50px;">
+          <div class="col" style="color: rgb(235, 211, 211); ">
+            <i  class="fa fa-users" aria-hidden="true">&nbsp;{{countOfMembers.countOfMembers}}</i>&nbsp;&nbsp;
+                 <i class="fas fa-question">&nbsp;{{questionStats.total}}</i>&nbsp;&nbsp;
+          Closed:&nbsp;{{questionStats.closed}}&nbsp;&nbsp;
+        
+        </div>
+        </div>
+        
+      </div>
+
+      

@@ -1,0 +1,12 @@
+nav
+{  
+
+    text-decoration: solid; 
+}
+
+nav:hover{
+    opacity: 1;
+}
+a{
+    cursor: pointer;
+}

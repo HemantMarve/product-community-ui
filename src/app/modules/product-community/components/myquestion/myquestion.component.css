@@ -1,0 +1,25 @@
+
+
+.card{
+    opacity: 0.8;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px #000;
+}
+.card:hover{
+  opacity: 1;
+  cursor: pointer;
+}
+.card-header{
+  border-radius: 8px;
+  box-shadow: 0px 0px 5px 0px #000;
+}
+
+.row{
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+i:hover{
+  color: black;
+  cursor: pointer;
+}

@@ -1,0 +1,28 @@
+<app-navbar ></app-navbar>
+
+<div class="container-fluid bg-light filter text-black" >
+    <div class="d-flex flex-row">
+        <div class="text-muted m-2" id="res">Showing {{questions.length}} results</div>
+        <div class="ml-auto mr-lg-4">
+            <div id="sorting" class="border rounded p-1 text-black m-1"> <span class="text-muted">Author&nbsp;</span> <select #mySelect (change)="onAuthorChange(mySelect.value)" name="sort" id="sort">
+                <option value="All"><strong>All</strong>
+                    <option *ngFor="let author of authors;index as i" [value]="author.userId"><b>{{author.userId}}</b></option>
+                </select> </div>
+        </div>
+        <div class="ml-auto mr-lg-4">
+            <div id="sorting" class="border rounded p-1 m-1"> <span class="text-muted">Product&nbsp;</span> <select #myProduct (change)="onProductChange(myProduct.value)" name="sort" id="sort">
+                <option value="All"><b>All</b></option>
+                    <option *ngFor="let product of products;index as i" [value]="product.productName"><b>{{product.productName}}</b></option>
+                </select> </div>
+        </div>
+
+        <div class="ml-auto mr-lg-4">
+            <div id="sorting" class="border rounded p-1 m-1"> <span class="text-muted">Date&nbsp;</span>
+            <input type="date" id="sort" (change)="onDateChange(dateFilter.value)" #dateFilter>
+            </div>
+        </div>
+    </div>
+ 
+    </div>
+<app-myquestion [questions]="questions"></app-myquestion>
+

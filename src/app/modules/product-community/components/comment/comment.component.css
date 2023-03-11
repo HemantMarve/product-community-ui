@@ -1,0 +1,13 @@
+.card{
+    opacity: 0.8;
+}
+
+.row{
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+i:hover{
+  color: black;
+  cursor: pointer;
+}

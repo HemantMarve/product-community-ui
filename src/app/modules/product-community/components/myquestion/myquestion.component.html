@@ -1,0 +1,84 @@
+<app-navbar *ngIf="isMyQuestion"></app-navbar>
+
+
+<div class="container-fluid big-banner">
+
+  <h3 *ngIf="questions.length==0" class="text-white">No Data Found!</h3>
+<div class="row justify-content-center" *ngFor="let question of questions;index as i">
+<div class="card " style="width: 45rem;padding: 0%;">
+        <div class="card-header inline bg-dark text-white">
+           <small><b>Author- </b></small>
+        <span style="text-align:left;"><small>{{question.user.firstName}}</small></span>
+        <i class='fas fa-lock' style="float: right;" *ngIf="question.questionClosed!=0&&user===question.user.userId" (click)="unlockQuestion(i)"></i>
+        <i class='fas fa-lock' style="float: right;" *ngIf="question.questionClosed!=0&&!user===question.user.userId"></i>
+        <i class='fas fa-unlock' style="float: right;" *ngIf="question.questionClosed==0"></i>
+        <br>
+        <i class="fas fa-clock"></i>&nbsp;
+        <span style="text-align:right;">{{question.postedOn | date : 'yyyy-MM-dd HH:mm:ss'}}</span>
+    </div>
+    <div class="card-body" >
+      <blockquote class="blockquote mb-0">
+          <p><b>Subject: </b>{{question.subject}}</p>
+        <p><b>Content: </b>{{question.content}}</p>
+        <footer class="blockquote-footer">
+            <div class="d-flex justify-content-start">
+              <i class="fa fa-comment" aria-hidden="true" style="text-decoration: underline; cursor: pointer;" (click)="hideOrUnhide(i)" *ngIf="question.comments.length!=0" >{{question.showReply}} {{question.comments.length}}</i>
+            </div>
+            <div class="d-flex justify-content-center" style="margin: 0%;">
+              <i class="fa fa-comment" aria-hidden="true" style="text-decoration: underline;cursor: pointer;" data-toggle="modal" data-target="#exampleModalLong" (click)="updateCommentSection(question.questionId,i)" data-bs-toggle="modal" data-bs-target="#exampleModal" *ngIf="question.questionClosed==0">Add Comment</i>
+          </div>
+            <div class="d-flex justify-content-end">
+                <i class="fa fa-thumbs-up" *ngIf="!question.liked" (click)="likedOrDislikedQuestion(i)"> {{question.likedCount}}</i>
+                <i class="fa fa-thumbs-up" *ngIf="question.liked" style="color: black;" (click)="likedOrDislikedQuestion(i)"> {{question.likedCount}}</i>   
+            </div>
+        </footer>
+        <div class="d-flex justify-content-start" *ngIf="question.questionClosed!=0">
+          <b>Answer: </b><p>&nbsp;{{question.answer.content}}</p>
+       </div>
+      </blockquote>
+    </div>
+  </div>
+  <!---->
+    <app-comment [questionUser]="question.user.userId" [width]="35" [questionClosed]="question.questionClosed!=0" [questionId]="question.questionId" [comments]="question.comments" *ngIf="question.showComments"></app-comment>
+  <!---->
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="reset" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closeButton></button>
+      </div>
+      <div class="modal-body">
+        <form class="form-container" ngNativeValidate  #addQuestion = "ngForm" (ngSubmit) = "addComment(addQuestion)" style="text-align: center;">
+          <div class="form-row" >
+          <h3>Add Comment</h3>
+          </div>
+          <div class="form-row">
+            
+              <div class="col">
+                  <input type="text" name="subject" class="form-control" placeholder="Subject*" ngModel required />
+                  
+              </div>
+          </div><br>
+   
+          <div class="form-row">
+              <div class="col">
+                 <textarea class="form-control" name="content" required placeholder="Body of Comment....." rows="5" ngModel></textarea>
+              </div>
+          </div><br>
+           
+          <div class="modal-footer">
+            <input type="submit" class="btn btn-dark btn-block" value="Comment"/>
+          </div>
+        
+        </form>
+      </div>
+     
+      
+    </div>
+  </div>
+</div>

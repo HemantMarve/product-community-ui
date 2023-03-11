@@ -1,0 +1,18 @@
+#sorting,
+    #res {
+        font-size: 12px;
+        margin-top: 2%
+    }
+    #sorting span,
+    #res {
+        font-size: 14px
+    }
+    select,
+.btn {
+    color: black
+}
+#sort {
+ 
+    border:groove
+}
+

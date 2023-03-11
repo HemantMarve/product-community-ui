@@ -1,0 +1,56 @@
+<div class="bg">
+  <app-navbar [userLoggedIn]=userLoggedIn style="padding: 0%;"></app-navbar>
+  <section class="container-fluid">
+  <section class="row justify-content-center">
+
+    <section class="col-12 col-sm-6 col-md-6" >
+       
+      <form class="form-container" ngNativeValidate  #registerUser = "ngForm" (ngSubmit) = "onClickSubmit(registerUser.value)" style="text-align: center;">
+        <div class="form-row" >
+        <h3>Register Yourself</h3>
+        </div>
+        <div class="form-row" *ngIf="!isOtpStep">
+          
+            <div class="col">
+                <input type="email" name="userId" class="form-control" placeholder="Email*" ngModel required />
+                
+            </div>
+        </div><br>
+        <div class="form-row" *ngIf="!isOtpStep">
+          <div class="col">
+              
+            <input type="text" name="firstName" class="form-control" placeholder="First name*" ngModel required />
+          </div><br>
+          <div class="col">
+            <input type="text" name="lastName" class="form-control" placeholder="Last name*" ngModel required />
+          </div>
+        </div><br>
+        <div class="form-row" *ngIf="!isOtpStep">
+            <div class="col">
+                <input type="password" name="authenticationKey" class="form-control" placeholder="Password*" ngModel required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"/>
+            </div>
+        </div><br>
+        <div class="form-row" *ngIf="!isOtpStep">
+            <div class="col">
+                <input type="password" name="confirmAuthenticationKey" class="form-control" placeholder="Confirm password*" ngModel required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"/>
+            </div>
+        </div><br>
+        <div class="form-row"  *ngIf="isOtpStep">
+          <input type="text"  #otpValue placeholder="Enter Otp....."/>&nbsp;&nbsp;
+      <button class="btn btn-success" (click)="submitAfterOtpVerification(otpValue.value)">Verify</button>
+        </div>
+        
+        <input type="submit" class="btn btn-dark btn-block" value="Submit" *ngIf="!isOtpStep"/>
+        <br><br>
+        <span style="color: red;">{{registerError}}</span><br>
+         <i class="fa fa-arrow-left" (click)="backToRegistration()" aria-hidden="true" *ngIf="isOtpStep" style="cursor: pointer;"></i>&nbsp;&nbsp;
+        <a href="/login"> <small>Already Have account?</small></a><br><br>
+        
+      </form>
+      <div>
+      
+    </div>
+    </section>
+    </section>
+    </section>
+</div>

@@ -1,0 +1,45 @@
+<div class="bg">
+    <app-navbar [userLoggedIn]=userLoggedIn style="padding: 0%;"></app-navbar>
+    <section class="container-fluid">
+    <section class="row justify-content-center">
+  
+      <section class="col-12 col-sm-6 col-md-6">
+         
+        <form class="form-container" ngNativeValidate  #addQuestion = "ngForm" (ngSubmit) = "onClickSubmit(addQuestion.value)" style="text-align: center;">
+          <div class="form-row" >
+          <h3>New Topic</h3>
+          </div>
+          <div class="form-row">
+            
+              <div class="col">
+                  <input type="text" name="subject" class="form-control" placeholder="Subject*" ngModel required />
+                  
+              </div>
+          </div><br>
+          <div class="form-row">
+            <div class="col">
+                
+                <select class="form-select" name="productType" aria-label="Default select example" ngModel required>
+                    <option value="" selected disabled>Select Product*</option> 
+                        <option *ngFor="let product of products;index as i" [value]="i" >{{product.productName}}</option>
+                    
+                  </select>
+            </div><br>
+          </div><br>
+          <div class="form-row">
+              <div class="col">
+                 <textarea class="form-control" name="content" required placeholder="Body of Post....." rows="5" ngModel></textarea>
+              </div>
+          </div><br>
+  
+          <input type="submit" class="btn btn-dark btn-block" value="Submit"/>
+          
+        
+        </form>
+       
+      
+      </section>
+      
+      </section>
+      </section>
+  </div>
